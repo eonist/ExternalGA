@@ -1,8 +1,12 @@
-name: External tests
+name: Swift Build and Test
 
 on:
   schedule:
     - cron: '0 14 * * *'  # Runs at 14:00 CET daily
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build-and-test:
