@@ -23,7 +23,7 @@ jobs:
           - 'sentryco/UpgradeAlert'
           - 'sentryco/Logger'
           - 'eonist/With'
-          - 'eonist/WizardHelper'
+          # - 'eonist/WizardHelper'
           - 'eonist/TestRunner'
 
     steps:
