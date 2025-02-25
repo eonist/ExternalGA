@@ -16,7 +16,7 @@ jobs:
         repo:
           # - 'eonist/FileSugar'
           # - 'eonist/JSONSugar'
-          - 'eonist/ClipboardSugar'
+         # - 'eonist/ClipboardSugar'
           - 'sentryco/Telemetric'
           - 'sentryco/CrashKit'
           - 'sentryco/NetTime'
