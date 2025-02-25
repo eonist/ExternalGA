@@ -15,7 +15,7 @@ jobs:
       matrix:
         repo:
           - 'eonist/FileSugar'
-          - 'eonist/JSONSugar'
+          # - 'eonist/JSONSugar'
           - 'eonist/ClipboardSugar'
           - 'sentryco/Telemetric'
           - 'sentryco/CrashKit'
