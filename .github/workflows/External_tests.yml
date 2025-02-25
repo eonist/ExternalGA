@@ -32,13 +32,13 @@ jobs:
       with:
         repository: ${{ matrix.repo }}
 
-    - name: Setup Swift
-      uses: swift-actions/setup-swift@65540b95f51493d65f5e59e97dcef9629ddf11bf
+    - name: Set up Swift
+      uses: fwal/setup-swift@v1
       with:
-        swift-version: "5.9"
+        swift-version: '5.9'
 
     - name: Build
-      run: swift build
+      run: swift build -v
 
     - name: Run tests
-      run: swift test
+      run: swift test -v
