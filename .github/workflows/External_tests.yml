@@ -1,0 +1,40 @@
+name: External tests
+
+on:
+  schedule:
+    - cron: '0 14 * * *'  # Runs at 14:00 CET daily
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        repo:
+          - 'eonist/FileSugar'
+          - 'eonist/JSONSugar'
+          - 'eonist/ClipboardSugar'
+          - 'sentryco/Telemetric'
+          - 'sentryco/CrashKit'
+          - 'sentryco/NetTime'
+          - 'sentryco/UpgradeAlert'
+          - 'sentryco/Logger'
+          - 'eonist/With'
+          - 'eonist/WizardHelper'
+          - 'eonist/TestRunner'
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ matrix.repo }}
+
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@65540b95f51493d65f5e59e97dcef9629ddf11bf
+      with:
+        swift-version: "5.3.3"
+
+    - name: Build
+      run: swift build
+
+    - name: Run tests
+      run: swift test
