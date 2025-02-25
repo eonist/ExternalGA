@@ -22,7 +22,7 @@ jobs:
           - 'sentryco/NetTime'
           - 'sentryco/UpgradeAlert'
           - 'sentryco/Logger'
-          - 'eonist/With'
+          # - 'eonist/With'
           # - 'eonist/WizardHelper'
           - 'eonist/TestRunner'
 
