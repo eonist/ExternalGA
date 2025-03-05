@@ -56,5 +56,5 @@ jobs:
     - name: Clean up orphan processes
       if: always()
       run: |
-        pkill -P $$
+        pkill -P $$ || true
         echo "Cleaned up orphan processes"
