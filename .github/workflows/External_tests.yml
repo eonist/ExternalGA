@@ -43,10 +43,10 @@ jobs:
     - name: Check for tests
       id: check_tests
       run: |
-        if ls Sources/*Tests*/*.swift > /dev/null 2>&1; then
-          echo "::set-output name=has_tests::true"
+        if ls Tests/**/*.swift > /dev/null 2>&1; then
+          echo "has_tests=true" >> $GITHUB_OUTPUT
         else
-          echo "::set-output name=has_tests::false"
+          echo "has_tests=false" >> $GITHUB_OUTPUT
         fi
 
     - name: Run tests
@@ -58,10 +58,3 @@ jobs:
       run: |
         pkill -P $$
         echo "Cleaned up orphan processes"
-
-    post:
-      always:
-        - name: Final cleanup
-          run: |
-            pkill -P $$
-            echo "Final cleanup of orphan processes"
