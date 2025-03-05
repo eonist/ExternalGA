@@ -19,7 +19,7 @@ jobs:
           - 'eonist/ClipboardSugar'
           - 'sentryco/Telemetric'
           - 'sentryco/CrashKit'
-          - 'sentryco/NetTime'
+          # - 'sentryco/NetTime' # this is private now
           - 'sentryco/UpgradeAlert'
           - 'sentryco/Logger'
           - 'eonist/With'
