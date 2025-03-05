@@ -14,17 +14,17 @@ jobs:
     strategy:
       matrix:
         repo:
-           - 'eonist/FileSugar'
-           - 'eonist/JSONSugar'
-           - 'eonist/ClipboardSugar'
-           - 'sentryco/Telemetric'
-           - 'sentryco/CrashKit'
-           - 'sentryco/NetTime'
-           - 'sentryco/UpgradeAlert'
-           - 'sentryco/Logger'
-           - 'eonist/With'
-           - 'eonist/WizardHelper'
-           - 'eonist/TestRunner'
+          - 'eonist/FileSugar'
+          - 'eonist/JSONSugar'
+          - 'eonist/ClipboardSugar'
+          - 'sentryco/Telemetric'
+          - 'sentryco/CrashKit'
+          - 'sentryco/NetTime'
+          - 'sentryco/UpgradeAlert'
+          - 'sentryco/Logger'
+          - 'eonist/With'
+          - 'eonist/WizardHelper'
+          - 'eonist/TestRunner'
 
     steps:
     - name: Checkout repository
@@ -43,12 +43,6 @@ jobs:
     - name: Check for tests
       id: check_tests
       run: |
-        # Check if any test files exist in the Sources directory.
-        # This assumes a standard Swift package structure where tests are located in a directory
-        # that contains "Tests" in its name (e.g., Sources/MyPackageTests/).
-        # The ls command searches for Swift files (*.swift) within such directories.
-        # The output is redirected to /dev/null to suppress the output of the ls command.
-        # If any files are found, the has_tests output is set to true; otherwise, it's set to false.
         if ls Sources/*Tests*/*.swift > /dev/null 2>&1; then
           echo "::set-output name=has_tests::true"
         else
@@ -59,4 +53,15 @@ jobs:
       if: steps.check_tests.outputs.has_tests == 'true'
       run: swift test -v
 
-      
+    - name: Clean up orphan processes
+      if: always()
+      run: |
+        pkill -P $$
+        echo "Cleaned up orphan processes"
+
+    post:
+      always:
+        - name: Final cleanup
+          run: |
+            pkill -P $$
+            echo "Final cleanup of orphan processes"
